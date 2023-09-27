@@ -1,0 +1,65 @@
+﻿@model IEnumerable<SqlLib.Pluklister>
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<button type="button" class="btn btn-primary" onclick="window.location.href = '@Url.Action("Index", "Pluklister")'">Tilbage</button>
+<h4>Pluksedel ID: @Html.DisplayFor(Model => Model.FirstOrDefault().plukliste_id) </h4>
+<h4>Navn: @Html.DisplayFor(Model => Model.FirstOrDefault().kunde_navn) </h4>
+<h4>Adresse: @Html.DisplayFor(Model => Model.FirstOrDefault().kunde_adresse) </h4>
+
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Varenummer
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Plukliste antal
+            </th>
+            <th>
+                Vare lager antal
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.FirstOrDefault().linjer) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.vare)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.navn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vare_type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.antal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vare_antal_paa_lager)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<form method="post" asp-controller="Pluklister" asp-action="OnPostAfslutPluksedel">
+    <input type="hidden" name="id" value="@Model.FirstOrDefault().plukliste_id" />
+    <button type="submit" class="btn btn-primary">Afslut pluksedel</button>
+</form>
+
+
+
+

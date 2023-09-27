@@ -1,0 +1,50 @@
+﻿@model IEnumerable<SqlLib.Pluklister>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Pluklist oversigt</h1>
+
+<h3>Total file count: @Model.Count()</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Navn
+            </th>
+            <th>
+                Forsendelse
+            </th>
+            <th>
+                Adresse
+            </th>
+            <th>
+                Antal linjer
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.kunde_navn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.forsendelse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kunde_adresse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.antal_linjer)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  id=item.plukliste_id  })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
